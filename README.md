@@ -1,6 +1,7 @@
 # CREAM
-## cash money check app
-## get the dough and clone the repo
+### get the dough and clone the repo
+
+![some image](http://24.media.tumblr.com/99f3d3d614be1208e8743c7177284008/tumblr_mrs9pnvpNX1rd1m63o1_1280.png)
 
 ## ???
 * Install (if you don't have them):
