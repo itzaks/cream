@@ -1,4 +1,6 @@
-# Swedbanx
+# CREAM
+## cash money check app
+## get the dough and clone the repo
 
 ## ???
 * Install (if you don't have them):
