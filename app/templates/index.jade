@@ -1,1 +1,8 @@
-h1 index
+h1.page-title Transaktioner
+
+if transactions
+  .transactions: each item in transactions
+    .transaction(class="is-#{ item.type }")
+      .transaction-date= item.date
+      .transaction-name= item.name
+      .transaction-amount= item.amount

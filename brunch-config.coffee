@@ -1,6 +1,12 @@
 exports.config =
   # See http://brunch.io/#documentation for docs.
-  plugins: static_jade: extension: '.static.jade'
+  plugins: 
+    static_jade: extension: '.static.jade'
+    stylus: plugins: ['jeet',]
+
+  server:
+    path: 'server.coffee'
+    run: yes
   files:
     javascripts:
       joinTo:

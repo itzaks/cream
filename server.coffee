@@ -1,27 +1,50 @@
-express = require 'express'
-path = require 'path'
+Swedbank   = require './swedbank-scraper'
+DotEnv     = require 'dotenv-node'
+express    = require 'express'
+compress   = require 'compression'
+bodyParser = require 'body-parser'
+logger     = require 'morgan'
+path       = require 'path'
+coffee     = require 'coffee-script'
+
+new DotEnv()
 
 class Server
-  constructor: ->
-    #start on heroku
-    @start() unless module.parent
+  constructor: (@port = process.env.PORT or 3333)->
+    @start()
+    @swedbank = new Swedbank
+      number: process.env.SWEDBANK_USER
+      pass: process.env.SWEDBANK_PASS
 
   routes: ->
-    @app.get '/', (req, res) ->
+    @app.get '/', (req, res) =>
       res.render 'index.static.jade'
+
+    @app.get '/transactions', (req, res) =>
+      #sends cached transactions for lazyness
+      res.send require './cached-transactions'
+
+      #@swedbank.get_transactions (transactions) ->
+      #  res.send transactions
 
   start: ->
     @app = express()
     @routes()
 
-    @app.use express.compress()
-    @app.use express.bodyParser()
+    @app.use compress()
+    @app.use bodyParser()
     @app.use express.static (path.resolve "public")
-    @app.use express.logger 'dev'
+    @app.use logger 'dev'
 
     @app.set 'views', __dirname + '/app'
     @app.set 'view engine', 'jade'
 
-    @app.listen 3333
+    @app.listen @port
+    console.info "server up on #{ @port }"
 
-module.exports = new Server()
+#start from brunch
+exports.startServer = (port, path, callback) -> 
+  new Server(port)
+#start directly if not run from brunch
+new Server() unless module.parent
+

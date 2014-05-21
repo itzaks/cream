@@ -1,2 +1,31 @@
+@import 'nib'
+@import 'jeet'
+
 body
-  background: yellow
+  background: #ccc
+  font-weight: bold
+  font-family: arial
+  font-size: 14px
+
+.layout-page
+  background: #fff
+  center(640px)
+  padding: 1em
+
+.page-title
+  text-align: center
+
+.transaction
+  margin-bottom: 1em
+  padding: 0.7em
+  color: #FFF
+  cf()
+.transaction-date
+  span(2/8, cycle: 3)
+.transaction-name,
+.transaction-amount
+  span(3/8, cycle: 3)
+.transaction.is-income
+  background: green
+.transaction.is-expense
+  background: red

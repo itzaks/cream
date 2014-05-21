@@ -11,18 +11,32 @@
     "start": "brunch watch --server",
     "test": "brunch test"
   },
+  "engines": {
+    "coffee": "1.7.1"
+  },
   "dependencies": {
-    "javascript-brunch": ">= 1.0 < 1.8",
-    "css-brunch": ">= 1.0 < 1.8",
-    "uglify-js-brunch": ">= 1.0 < 1.8",
-    "clean-css-brunch": ">= 1.0 < 1.8",
-    "auto-reload-brunch": ">= 1.0 < 1.8",
-    "stylus-brunch": "~1.7.0",
-    "jade-brunch": "~1.7.0",
-    "static-jade-brunch": "~1.7.0",
-    "coffee-script-brunch": "~1.8.0",
-    "express": "~3.5.1",
-    "path": "~0.4.9",
-    "jade": "~1.3.1"
+    "coffee-script": "latest",
+    "javascript-brunch": "latest",
+    "css-brunch": "latest",
+    "uglify-js-brunch": "latest",
+    "clean-css-brunch": "latest",
+    "auto-reload-brunch": "latest",
+    "stylus-brunch": "brunch/stylus-brunch",
+    "jade-brunch": "latest",
+    "static-jade-brunch": "latest",
+    "coffee-script-brunch": "latest",
+    "express": "latest",
+    "path": "latest",
+    "jade": "latest",
+    "tmp": "latest",
+    "node-uuid": "latest",
+    "request": "latest",
+    "zombie": "latest",
+    "cheerio": "latest",
+    "compression": "~1.0.2",
+    "body-parser": "~1.2.0",
+    "morgan": "~1.1.1",
+    "jeet": "~5.2.10",
+    "dotenv-node": "0.0.2"
   }
 }
