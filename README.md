@@ -15,4 +15,3 @@
 * Learn (brunch):
     * `public/` dir is fully auto-generated and served by HTTP server.  Write your code in `app/` dir.
     * Place static files you want to be copied from `app/assets/` to `public/`.
-    * [Brunch site](http://brunch.io), [Chaplin site](http://chaplinjs.org)
