@@ -12,3 +12,8 @@ class Index extends View
 
   getRenderData: ->
     return transactions: @collection?.toJSON()
+
+  ready: ->
+    for el in @$('.transaction-date') 
+      $el = $(el)
+      $el.text moment($el.text(), "YYMMDD").fromNow()
