@@ -1,6 +1,6 @@
 @import 'nib'
 @import 'jeet'
-
+color-detail = #A8A8A8
 body
   background: #ccc
   font-weight: bold
@@ -12,35 +12,49 @@ body
   center(320px)
   padding: 1em
 
-.page-title
+.page-title,
+.page-subtitle
   text-align: center
+
+.page-subtitle
+  color: #ccc
+  margin-top: 0
+
+.page-title
+  margin-bottom: 0.25em
 
 .transaction
   margin: 0.4em 0
   padding: 0.6em 0.6em 1em
   color: #000
   border-bottom: 1px solid #EEE
+  cursor: pointer
+
+.transaction:hover
+  background: #f1f1f1
+
 .transaction-body
   cf()
-.transaction-name,
-.transaction-amount
+
+.transaction-total
+  color: #ccc
+
+.transaction-date
+  color: color-detail
+  font-weight: 400
+
+.transaction-body-column
   span(1/2, cycle: 2)
+
 .transaction-amount
-  text-align: right
-.transaction-amount-value
-  padding: 0.5em
-  box-sizing: border-box
-  text-align: center
-  color: #FFF
-  relative: top 8px
-  border-radius: 5px
   .is-income &
-    background: #74B415
+    color: #74B415
   .is-expense &
-    background: #F5450E
+    color: #F5450E
+
+.transaction-amount,
+.transaction-total
+  text-align: right
   &:after
     content: 'kr'
     display: inline
-.transaction-meta
-  color: #A8A8A8
-  font-weight: 400
