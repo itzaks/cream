@@ -4,7 +4,7 @@ $       = require('cheerio')
 module.exports =
 class Swedbank
   transactions: []
-  url: 
+  url:
     login: "https://mobilbank.swedbank.se/banking/swedbank/login.html"
     account: "https://mobilbank.swedbank.se/banking/swedbank/account.html?id=0"
     account_next: "https://mobilbank.swedbank.se/banking/swedbank/account.html?id=0&action=next"
@@ -13,7 +13,7 @@ class Swedbank
     @browser = new Browser()
 
   get_transactions: (cb = ->) ->
-    @done = -> cb(@transactions)
+    @done = -> cb(transactions: @transactions, meta: @meta)
     @check_account()
 
   login: ->
@@ -28,31 +28,36 @@ class Swedbank
 
   check_account: ->
     @transactions = []
+    @meta = {}
     @browser.visit @url.account
     .then =>
       return @login() if @browser.text("H1") is "Logga in"
       @add_transactions @browser.html(".clearfix")
+      #@browser.query
       @browser.visit @url.account_next
-    .then => 
+    .then =>
+      console.log @browser.html()
+      @meta.total_amount = @browser
       @add_transactions @browser.html(".clearfix")
       @browser.visit @url.account_next
-    .then => 
+    .then =>
       @add_transactions @browser.html(".clearfix")
       @browser.visit @url.account_next
-    .then => 
+    .then =>
       @add_transactions @browser.html(".clearfix")
       @browser.visit @url.account_next
     .then => @done?()
 
   add_transactions: (dom) ->
     $('.clearfix', dom).each (index, el) =>
-      transaction = 
+      transaction =
         date: $('.date', el).text()
         name: $('.receiver', el).text()
         amount: $('.amount', el).text()
 
       expense = parseInt(transaction.amount, 10) < 0
       transaction.type = if expense then "expense" else "income"
-      
+      transaction.id = index
+
       if transaction.name
-        @transactions.push(transaction) 
+        @transactions.push(transaction)
