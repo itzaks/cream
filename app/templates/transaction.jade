@@ -1,0 +1,10 @@
+.transaction(class="is-#{ type }", data-transaction-id="#{ index }")
+  .transaction-body
+    .transaction-body-column
+      .transaction-name= name
+      .transaction-date= date
+    .transaction-body-column
+      .transaction-amount= amount
+      .transaction-total= total_amount + " "
+      - amount = parseInt(amount.replace(' ', '').replace(' ', '').replace(' ', ''), 10)
+      - total_amount -= amount

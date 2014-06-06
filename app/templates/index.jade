@@ -1,11 +1,4 @@
 h1.page-title Transaktioner
+h2.page-subtitle Saldo: <span class='page-total-amount'>#{ total_amount }</span>
 
-if transactions
-  .transactions: each item in transactions
-    .transaction(class="is-#{ item.type }")
-      .transaction-body
-        .transaction-name= item.name
-        .transaction-amount
-          span.transaction-amount-value= item.amount
-      .transaction-meta
-        .transaction-date= item.date
+.transactions
