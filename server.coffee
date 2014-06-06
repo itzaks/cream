@@ -20,12 +20,16 @@ class Server
     @app.get '/', (req, res) =>
       res.render 'index.static.jade'
 
-    @app.get '/transactions', (req, res) =>
       #sends cached transactions for lazyness
+    @app.get '/transactions', (req, res, next) =>
+      #@swedbank.get_transactions (data) -> res.send data
       res.send require './cached-transactions'
 
-      #@swedbank.get_transactions (transactions) ->
-      #  res.send transactions
+  allowCrossDomain: (req, res, next) ->
+    res.header('Access-Control-Allow-Origin', "*")
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+    next()
 
   start: ->
     @app = express()
@@ -33,6 +37,7 @@ class Server
 
     @app.use compress()
     @app.use bodyParser()
+    @app.use @allowCrossDomain
     @app.use express.static (path.resolve "public")
     @app.use logger 'dev'
 
@@ -43,8 +48,7 @@ class Server
     console.info "server up on #{ @port }"
 
 #start from brunch
-exports.startServer = (port, path, callback) -> 
+exports.startServer = (port, path, callback) ->
   new Server(port)
 #start directly if not run from brunch
 new Server() unless module.parent
-
