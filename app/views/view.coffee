@@ -1,7 +1,7 @@
 module.exports = class View extends Backbone.View
   debug: on
 
-  startDebugging: ->
+  start_debugging: ->
     @on "#{@cid}:initialize", ->
       console.debug "Initialized #{@name}", @
 
@@ -75,18 +75,22 @@ module.exports = class View extends Backbone.View
     @bootstrap()
 
     @name = @name or @constructor.name
-    @startDebugging() if @debug is on
+    @start_debugging() if @debug is on
     @render() if @autoRender is on
+
+    super()
+    @refreshElements()
+    @delegateEvents()
 
     @trigger "#{@cid}:initialize", @
 
-  getRenderData: -> @model?.toJSON() or {}
+  get_render_data: -> @model?.toJSON() or {}
 
   render: ->
     @trigger "#{@cid}:render:before", @
 
     @$el.attr('data-cid', @cid)
-    @html @template(@getRenderData())
+    @html @template(@get_render_data())
     @rendered = yes
 
     @trigger "#{@cid}:render:after", @
