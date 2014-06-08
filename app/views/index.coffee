@@ -1,3 +1,4 @@
+TransactionView = require './transaction'
 View = require './view'
 
 
@@ -5,23 +6,6 @@ class Transaction extends Backbone.Model
   defaults: tags: []
 class Transactions extends Backbone.Collection
   model: Transaction
-class TransactionView extends Backbone.View
-  template: require 'templates/transaction'
-  elements: view: '.transaction'
-  events: view: 'click'
-
-  render: ->
-    @$el.html @template @model.toJSON()
-    @
-
-  view_click: (event)  ->
-    @set_new_tags()
-
-  set_new_tags: ->
-    tags = prompt "Enter tag name", @model.get("tags").join ", "
-    return unless tags or (tags?.length is 1 and tags[0] is "")
-    @model.set "tags", tags.split ", "
-
 module.exports =
 class Index extends View
   className: 'page'
