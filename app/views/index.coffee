@@ -7,6 +7,7 @@ class Index extends View
   className: 'page'
   template: require 'templates/index'
   elements: transactions: '.transactions'
+  subscriptions: 'tags:change': 'render'
 
   bootstrap: -> $.get '/transactions', (data, a, b, i = 0) =>
     total_amount = 8500
