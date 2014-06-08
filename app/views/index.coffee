@@ -1,11 +1,7 @@
+TransactionsCollection = require 'lib/transactions'
 TransactionView = require './transaction'
 View = require './view'
 
-
-class Transaction extends Backbone.Model
-  defaults: tags: []
-class Transactions extends Backbone.Collection
-  model: Transaction
 module.exports =
 class Index extends View
   className: 'page'
@@ -18,7 +14,7 @@ class Index extends View
       model.id = i++ 
       amount = parseInt (model.amount.replace(" ", "").replace(" ", "").replace(" ", "")), 10
       model.total_amount = total_amount + amount
-    @collection = new Transactions data
+    @collection = new TransactionsCollection data
     @generate_transaction_views()
     @render()
 
