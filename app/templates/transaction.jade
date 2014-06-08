@@ -6,5 +6,5 @@
     .transaction-body-column
       .transaction-amount= amount
       .transaction-total= total_amount + " "
-      - amount = parseInt(amount.replace(' ', '').replace(' ', '').replace(' ', ''), 10)
+      - amount = parseInt(amount.replace(/\s/g, ''), 10)
       - total_amount -= amount
