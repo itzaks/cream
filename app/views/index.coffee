@@ -25,14 +25,13 @@ class Index extends View
       new TransactionView {model} 
 
   render: ->
-    console.log "render", @transaction_views
     super()
+    @refreshElements()
     return @ unless @transaction_views
     @$transactions.html (v.render().el for v in @transaction_views)
-    @
+    return this
 
   ready: ->
-    @refreshElements()
     for el in @$('.transaction-date')
       $el = $(el)
       $el.text moment($el.text(), "YYMMDD").fromNow()
