@@ -33,39 +33,4 @@ body
 .transaction:hover
   background: #f1f1f1
 
-.transaction-body
-  cf()
-
-.transaction-total
-  color: #ccc
-
-.transaction-date
-  color: color-detail
-  font-weight: 400
-
-.transaction-body-column
-  span(1/2, cycle: 2)
-
-.transaction-amount
-  .is-income &
-    color: #74B415
-  .is-expense &
-    color: #F5450E
-
-.transaction-amount,
-.transaction-total
-  text-align: right
-  &:after
-    content: 'kr'
-    display: inline
-
-.transaction-tags
-  margin-top: 0.5em
-
-.transaction-tag
-  display: inline-block
-  border-radius: 0.15em
-  margin-right: 0.25em 
-  padding: 0.15em 0.5em
-  background: #ccc
-  color: #fff
+@import '_transactions'

@@ -1,0 +1,62 @@
+color-background = #fff
+
+hover-border-effect(size = 20px)
+  &:before
+    content ''
+    transition: all 100ms cubic-bezier(0.860, 0.000, 0.070, 1.000)
+    absolute: top 0 bottom 0
+    width: size
+    left: -(size)
+    background: rgba(95, 129, 59, 0.17)
+    opacity: 0
+  &:hover:before
+    transform: translate3d(size, 0, 0)
+    opacity: 1
+
+.transaction
+  hover-border-effect(0.75em)
+  margin: 0.4em 0
+  padding: 0.6em 0.6em 1em 1.5em
+  color: #000
+  border-bottom: 1px solid darken(color-background, 10%)
+  cursor: pointer
+  position: relative
+  overflow: hidden
+
+.transaction-name
+  font-weight: 700
+
+.transaction.is-mat
+  background: #E0F5BB
+
+.transaction-body
+  cf()
+
+.transaction-total
+  color: color-gray
+
+.transaction-date
+  color: color-detail
+  font-weight: 400
+
+.transaction-body-column
+  span(1/2, cycle: 2)
+
+.transaction-amount
+  .is-income &
+    color: #74B415
+  .is-expense &
+    color: #F5450E
+
+.transaction-amount,
+.transaction-total
+  text-align: right
+  &:after
+    content: 'kr'
+    display: inline
+
+.transaction-tags
+  margin-top: 0.5em
+
+.transaction-tag
+  tag()
