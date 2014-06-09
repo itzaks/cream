@@ -12,6 +12,11 @@ class Transactions extends Backbone.Collection
     @tags.get()?[get_clean_name(model)] or []
   get_tags_as_string: (model) ->
     @get_tags(model).join ", "
+  get_all_tags: -> 
+    _ret = []
+    tags = @tags.get()
+    _.chain(tags).toArray().flatten().uniq().value()
+
   set_from_string: (tags, model) ->
     name = get_clean_name(model)
     tags = tags.split ", "
