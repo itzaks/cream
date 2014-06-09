@@ -1,21 +1,30 @@
 TransactionsCollection = require 'lib/transactions'
 TransactionView = require './transaction'
+LocalStorage = require 'lib/localstorage'
+clean_string = require 'lib/clean_string'
 View = require './view'
+total_amount = 8500
 
 module.exports =
 class Index extends View
   className: 'page'
+  auto_render: off
   template: require 'templates/index'
   elements: transactions: '.transactions'
   subscriptions: 'tags:change': 'render'
+  views: tags: require './tags'
 
-  bootstrap: -> $.get '/transactions', (data, a, b, i = 0) =>
-    total_amount = 8500
-    for model in data
-      model.id = i++ 
-      amount = parseInt (model.amount.replace(" ", "").replace(" ", "").replace(" ", "")), 10
-      model.total_amount = total_amount + amount
-    @collection = new TransactionsCollection data
+  bootstrap: -> 
+    @fetch_transactions()
+
+  fetch_transactions: ->
+    $.get '/transactions', (data) =>
+      {@transactions, @meta} = data
+      @add_transactions()
+
+  add_transactions: ->
+    @add_total_to_model(model) for model in @transactions
+    @collection = new TransactionsCollection @transactions
     @generate_transaction_views()
     @render()
 
