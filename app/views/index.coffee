@@ -38,11 +38,16 @@ class Index extends View
       new TransactionView {model} 
 
   render: ->
+    return this unless @collection or @transaction_views
     super()
     @refreshElements()
-    return @ unless @transaction_views
-    @$transactions.html (v.render().el for v in @transaction_views)
+    @render_subviews()
     return this
+
+  render_subviews: ->
+    views = @transaction_views
+    dom = (v.render().el for v in views)
+    @$transactions.html(dom)
 
   ready: ->
     for el in @$('.transaction-date')
