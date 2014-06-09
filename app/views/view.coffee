@@ -18,7 +18,7 @@ module.exports = class View extends Backbone.View
 
   name: null
 
-  autoRender: off
+  auto_render: off
 
   rendered: no
 
@@ -76,7 +76,7 @@ module.exports = class View extends Backbone.View
 
     @name = @name or @constructor.name
     @start_debugging() if @debug is on
-    @render() if @autoRender is on
+    @render() if @auto_render is on
 
     super()
     @refreshElements()
