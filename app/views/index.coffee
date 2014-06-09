@@ -28,6 +28,10 @@ class Index extends View
     @generate_transaction_views()
     @render()
 
+  add_total_to_model: (model) ->
+    amount = parseInt clean_string(model.amount), 10
+    model.total_amount = total_amount - amount
+
   generate_transaction_views: ->
     {models} = @collection
     @transaction_views = for model in models
