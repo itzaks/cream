@@ -3,8 +3,8 @@
 
 ![some image](http://24.media.tumblr.com/99f3d3d614be1208e8743c7177284008/tumblr_mrs9pnvpNX1rd1m63o1_1280.png)
 
-## ???
-* Install (if you don't have them):
+## What is this I don't even...
+* Setup:
     * [Node.js](http://nodejs.org): `brew install node` on OS X
     * [Brunch](http://brunch.io): `npm install -g brunch`
     * Brunch plugins and Bower dependencies: `npm install`.
