@@ -37,6 +37,9 @@ class Index extends View
     @transaction_views = for model in models
       new TransactionView {model} 
 
+  get_render_data : ->
+    {total_amount, tags: @collection?.get_all_tags()}
+
   render: ->
     return this unless @collection or @transaction_views
     super()
