@@ -1,8 +1,9 @@
 LocalStorage = require 'lib/localstorage'
+clean_string = require 'lib/clean_string'
+
 class Transaction extends Backbone.Model
 
-clear_whitespace = (str) -> str.replace /\s/g, ''
-get_clean_name = (model) -> clear_whitespace(model.get('name'))
+get_clean_name = (model) -> clean_string(model.get('name'))
 
 module.exports =
 class Transactions extends Backbone.Collection
