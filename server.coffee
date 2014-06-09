@@ -20,10 +20,10 @@ class Server
     @app.get '/', (req, res) =>
       res.render 'index.static.jade'
 
-      #sends cached transactions for lazyness
-    @app.get '/transactions', (req, res, next) =>
-      #@swedbank.get_transactions (data) -> res.send data
+    #sends cached transactions for lazyness
+    @app.get '/transactions', (req, res) =>
       res.send require './cached-transactions'
+      #@swedbank.get_transactions (data) -> res.send data
 
   allowCrossDomain: (req, res, next) ->
     res.header('Access-Control-Allow-Origin', "*")
