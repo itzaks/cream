@@ -13,7 +13,6 @@ each tag in tags
       .transaction-total= total_amount + " "
       - amount = parseInt(amount.replace(/\s/g, ''), 10)
       - total_amount -= amount
-  .transaction-tags
-    each tag in tags
-      span.transaction-tag= tag
+  .transaction-tags: each tag in tags
+    span.transaction-tag= tag
 
