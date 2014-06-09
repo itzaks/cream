@@ -1,4 +1,9 @@
-.transaction(class="is-#{ type }", data-transaction-id="#{ index }")
+- tag_classes = []
+each tag in tags
+  - tag_classes.push('is-' + tag.replace(/\s/g, '-'))
+- tag_classes = tag_classes.join(' ')
+
+.transaction(class="is-#{ type } #{ tag_classes }")
   .transaction-body
     .transaction-body-column
       .transaction-name= name
